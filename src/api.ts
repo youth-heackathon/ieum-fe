@@ -14,7 +14,8 @@ export async function api<T = unknown>(path: string, method = "GET", body?: unkn
     body: body === undefined ? undefined : JSON.stringify(body),
   });
   const text = await res.text();
-  const data = text ? JSON.parse(text) : undefined;
+  // 프록시·CORS 오류는 JSON이 아닌 글로 온다
+  const data = text && res.headers.get("content-type")?.includes("json") ? JSON.parse(text) : undefined;
   if (res.status === 401) location.hash = "#/L0";
   if (!res.ok) throw new Error(data?.detail ?? `요청이 실패했어요 (${res.status})`);
   return data as T;

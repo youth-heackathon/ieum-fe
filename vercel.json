@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/a/:path*", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://ieum-be-production.up.railway.app/api/:path*" },
+    { "source": "/a/:path*", "destination": "/index.html" }
+  ]
 }
