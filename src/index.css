@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+/* KRDS 기반 토큰 — docs/plan/prototype/app.html 과 동일 값 */
+@theme {
+  --font-sans: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --color-p: #256EF4;
+  --color-p-d: #0B50D0;
+  --color-p-t: #ECF2FE;
+  --color-p-ink: #0B3D99;
+  --color-t1: #1E2124;
+  --color-t2: #464C53;
+  --color-t3: #6D7882;
+  --color-bd: #CDD1D5;
+  --color-dv: #E6E8EA;
+  --color-bg: #F4F5F6;
+  --color-red: #C8281E;
+  --color-red-t: #FDEEEC;
+  --color-amb: #8A5A00;
+  --color-amb-t: #FFF5D6;
+  --color-amb-b: #E9A800;
+  --color-grn: #1E7B34;
+  --color-grn-t: #E8F5EB;
+}
+
+/* 고대비 모드: <html data-contrast="high"> */
+[data-contrast="high"] {
+  --color-p: #0039A6;
+  --color-p-d: #002A7A;
+  --color-p-t: #E3ECFD;
+  --color-p-ink: #001F5C;
+  --color-t1: #000;
+  --color-t2: #1E2124;
+  --color-t3: #33383E;
+  --color-bd: #1E2124;
+  --color-dv: #6D7882;
+  --color-bg: #EEF0F2;
+  --color-red: #A3170E;
+  --color-amb: #5C3C00;
+  --color-amb-b: #8A5A00;
+  --color-grn: #0D5A20;
+}
+
+html { font-size: 17px; } /* 설계 기준: 본문 17px 이상 */
+body { background: var(--color-bg); color: var(--color-t1); font-family: var(--font-sans); }
