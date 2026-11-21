@@ -162,7 +162,7 @@ mark{background:#FFE89A;color:inherit;text-decoration:underline 2px;text-underli
 .btn.call small{font-size:17px;font-weight:500;color:var(--color-t2)}
 .div{display:flex;align-items:center;gap:10px;color:var(--color-t3);font-size:16px;font-weight:600}
 .div::before,.div::after{content:"";height:1px;background:var(--color-dv);flex:1}
-.ring{position:relative;width:176px;height:176px}
+.ring{position:relative;width:176px;height:176px;box-shadow:none} /* Tailwind ring 유틸리티와 이름이 겹침 */
 .ring svg{width:176px;height:176px;transform:rotate(-90deg)}
 .ring div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .ring b{font-size:42px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
@@ -228,6 +228,7 @@ mark{background:#FFE89A;color:inherit;text-decoration:underline 2px;text-underli
 
 /* 인수인계 이해 확인: 제출용 프로토타입의 기존 KRDS 색과 화면 틀을 재사용한다. */
 .understanding button{font-family:inherit;cursor:pointer}
+.understanding button:not(.btn){line-height:normal} /* preflight가 버튼에 물려준 줄 간격을 원본처럼 되돌림 */
 .understanding button:disabled{opacity:.5;cursor:not-allowed}
 .understanding :is(button,a,textarea,summary):focus-visible{outline:3px solid var(--color-p-ink);outline-offset:3px}
 .understanding .tb-context{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:15px;color:var(--color-t2)}

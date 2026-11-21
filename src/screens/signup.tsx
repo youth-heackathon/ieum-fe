@@ -1,48 +1,64 @@
 // 디자인 원본: github.com/sgggg123/ieum-sucheop prototype/app.html (9e8f206) 마크업·문구를 그대로 옮김
+import { useState } from "react";
 import { Ic } from "../Icons";
+import { api, fresh } from "../api";
 
-export const L0 = () => (
-  <>
-    <header className="ab">
-      <span></span>
-      <h1>이음수첩</h1>
-      <span></span>
-    </header>
-    <div className="tabs2" role="tablist" aria-label="로그인 방식">
-      <span role="tab" aria-selected="false">
-        처음 가입
-      </span>
-      <span className="on" role="tab" aria-selected="true">
-        로그인
-      </span>
-    </div>
-    <div className="ct">
-      <div className="fld">
-        <span className="lbl">휴대폰 번호</span>
-        <span className="inp">010-2345-6789</span>
+export const L0 = () => {
+  const [error, setError] = useState("");
+  // shortcut: 문자 인증 가입(otp → signup → recipients → consents)은 안 붙임. 체험 가구(박지은·김순자)로 로그인
+  const start = () =>
+    api("/demo/sessions", "POST").then(
+      () => (fresh(), (location.hash = "#/A1")),
+      (e: Error) => setError(e.message),
+    );
+  return (
+    <>
+      <header className="ab">
+        <span></span>
+        <h1>이음수첩</h1>
+        <span></span>
+      </header>
+      <div className="tabs2" role="tablist" aria-label="로그인 방식">
+        <span role="tab" aria-selected="false">
+          처음 가입
+        </span>
+        <span className="on" role="tab" aria-selected="true">
+          로그인
+        </span>
       </div>
-      <div className="fld">
-        <span className="lbl">비밀번호</span>
-        <span className="inp">••••••••</span>
+      <div className="ct">
+        <div className="fld">
+          <span className="lbl">휴대폰 번호</span>
+          <span className="inp">010-2345-6789</span>
+        </div>
+        <div className="fld">
+          <span className="lbl">비밀번호</span>
+          <span className="inp">••••••••</span>
+        </div>
+        <p className="note">
+          <Ic n="info" />
+          <span>처음에는 휴대폰 문자 인증으로 가입하고, 그다음부터는 전화번호와 비밀번호로 로그인해요.</span>
+        </p>
+        <p className="cap" style={{ border: "1px dashed #9AA3AD", borderRadius: "8px", padding: "8px 12px" }}>
+          체험 모드 · 쿠키 세션으로 로그인을 유지하고, 문자 인증은 모의로 처리해요
+        </p>
+        {error && (
+          <p className="note" role="alert">
+            {error}
+          </p>
+        )}
       </div>
-      <p className="note">
-        <Ic n="info" />
-        <span>처음에는 휴대폰 문자 인증으로 가입하고, 그다음부터는 전화번호와 비밀번호로 로그인해요.</span>
-      </p>
-      <p className="cap" style={{ border: "1px dashed #9AA3AD", borderRadius: "8px", padding: "8px 12px" }}>
-        체험 모드 · 쿠키 세션으로 로그인을 유지하고, 문자 인증은 모의로 처리해요
-      </p>
-    </div>
-    <div className="bt col">
-      <a className="btn btn-p full" href="#/A1">
-        로그인
-      </a>
-      <a className="btn btn-t full" href="#/L1">
-        문자 인증으로 가입하기
-      </a>
-    </div>
-  </>
-);
+      <div className="bt col">
+        <button className="btn btn-p full" onClick={start}>
+          로그인
+        </button>
+        <a className="btn btn-t full" href="#/L1">
+          문자 인증으로 가입하기
+        </a>
+      </div>
+    </>
+  );
+};
 
 export const L1 = () => (
   <>
